@@ -8,7 +8,7 @@
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
  the Free Software Foundation; either version 2 of the License, or
- (at your option) any later version.
+ (at your option) any later version. 
 
  This program is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -336,11 +336,6 @@ end
 password = vlc.var.inherit(nil,"http-password")
 
 h = vlc.httpd()
-if password == "" then
-    vlc.msg.err("Password unset, insecure web interface disabled")
-    vlc.msg.info("Set --http-password on the command line if you want to enable the web interface.")
-    p = h:handler("/",nil,nil,callback_nopassword,nil)
-else
-    load_dir( http_dir )
-    a = h:handler("/art",nil,password,callback_art,nil)
+load_dir( http_dir )
+a = h:handler("/art",nil,password,callback_art,nil)
 end
